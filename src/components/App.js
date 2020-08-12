@@ -3,19 +3,7 @@ import axios from "axios";
 import SearchBar from "./SearchBar";
 
 class App extends React.Component {
-  // onSearchSubmit(term) {
-  //   // Async CORS Request that returns a Promise
-  //   axios
-  //     .get("https://api.unsplash.com/search/photos", {
-  //       params: { query: term },
-  //       headers: {
-  //         Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_KEY}`
-  //       }
-  //     })
-  //     .then(response => {
-  //       console.log(response.data.results);
-  //     });
-  // }
+  state = { images: [] };
 
   // Cleaner Syntax
   async onSearchSubmit(term) {
@@ -25,13 +13,14 @@ class App extends React.Component {
         Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_KEY}`
       }
     });
-    console.log(response.data.results);
+    this.setState({ images: response.data.results });
   }
 
   render() {
     return (
       <div className="ui container" style={{ marginTop: "20px" }}>
         <SearchBar onSubmit={this.onSearchSubmit} />
+        Found: {this.state.images.length} images
       </div>
     );
   }
