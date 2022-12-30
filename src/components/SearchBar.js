@@ -2,22 +2,22 @@ import React from "react";
 import { useState } from "react";
 
 function SearchBar({ onSubmit }) {
-  const [term, setTerm] = useState("");
+  const [term, setTerm] = useState('');
 
-  function onFormSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     onSubmit(term);
   }
   
   return (
     <div className="ui segment">
-      <form onSubmit={event => onFormSubmit(event)} className="ui form">
+      <form onSubmit={handleSubmit} className="ui form">
         <div className="field">
           <label>Image Search</label>
           <input
             type="text"
             value={term}
-            onChange={event => setTerm(event.target.value)}
+            onChange={(event) => setTerm(event.target.value)}
           />
         </div>
       </form>

@@ -7,7 +7,7 @@ import ImageList from "./ImageList";
 function App() {
   const [images, setImages] = useState([]);
 
-  async function onSearchSubmit(term) {
+  const handleSubmit = async (term) => {
     await unsplash.get("/search/photos", {
       params: { query: term }
     }).then(response => {
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="ui container" style={{ marginTop: "20px" }}>
-      <SearchBar onSubmit={onSearchSubmit} />
+      <SearchBar onSubmit={handleSubmit} />
       Found: {images.length} images
       <ImageList images={images} />
     </div>
